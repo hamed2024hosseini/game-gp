@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بازی گل یا پوچ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+        .button {
+            padding: 10px 20px;
+            font-size: 18px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        #gol {
+            background-color: #4CAF50;
+            color: white;
+        }
+        #pooch {
+            background-color: #f44336;
+            color: white;
+        }
+        #result {
+            font-size: 20px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>بازی گل یا پوچ</h1>
+    <p>یکی از گزینه‌ها را انتخاب کنید:</p>
+    <button id="gol" class="button">گل</button>
+    <button id="pooch" class="button">پوچ</button>
+    
+    <div id="result"></div>
+
+    <script>
+        let score = 0;
+
+        // انتخاب تصادفی بین گل یا پوچ
+        function chooseRandom() {
+            const options = ["گل", "پوچ"];
+            return options[Math.floor(Math.random() * options.length)];
+        }
+
+        // بررسی حدس کاربر
+        function checkGuess(userGuess) {
+            const botChoice = chooseRandom();
+            let resultText;
+            if (userGuess === botChoice) {
+                score++;
+                resultText = "برنده شدی! انتخاب درست: " + botChoice;
+            } else {
+                score--;
+                resultText = "بازنده شدی! انتخاب درست: " + botChoice;
+            }
+            document.getElementById("result").innerText = resultText + " نمره شما: " + score;
+        }
+
+        // برای نمایش نتیجه
+        document.getElementById("gol").addEventListener("click", function() {
+            checkGuess("گل");
+        });
+
+        document.getElementById("pooch").addEventListener("click", function() {
+            checkGuess("پوچ");
+        });
+    </script>
+</body>
+</html>
